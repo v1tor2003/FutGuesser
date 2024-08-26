@@ -4,14 +4,19 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + TS</title>
+    <link rel="stylesheet" href="src/style.css">
+    <title>Fut Guesser</title>
   </head>
   <body>
-    <div id="app">
-      <h1>home</h1>
-      <a href="#/page.html">page</a>
-      <a href="#/about.html">about</a>
-      <a href="#/not-exists.html">404</a>
+    <div class="container">
+      <div id="app" class="card">
+        <div class="content">
+          <h1>⚽ Fut Guesser ⚽</h1>
+          <h4>Reconheça o Escudo, Conquiste a Glória!</h4>
+          <a href="#/tutorial.html" class="btn">Tutorial</a>
+          <button onclick="startGame()">Jogar</button>
+        </div>
+      </div>
     </div>
     <script type="module" src="/src/main.ts"></script>
     
