@@ -2,84 +2,131 @@
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+body, html {
+  height: 100%;
+  overflow: hidden;
+  font-family: 'Arial', sans-serif;
+  margin: 0; 
 }
 
-body {
-  margin: 0;
+.container {
+  background-image: url('/images/pitch.png'); 
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
   display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vanilla:hover {
-  filter: drop-shadow(0 0 2em #3178c6aa);
+  justify-content: center;
+  align-items: center;
+  padding: 1rem; 
 }
 
 .card {
-  padding: 2em;
+  background: rgba(255, 255, 255, 0.1); 
+  backdrop-filter: blur(10px); 
+  border-radius: 10px;
+  padding: 2rem;
+  max-width: 60%; 
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  color: white;
 }
 
-.read-the-docs {
-  color: #888;
+.card .content h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.card .content p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
 }
 
 button {
-  border-radius: 8px;
+  all: unset;
+  display: inline-block;
+  box-sizing: border-box; /* Ensure padding and border are included in the element’s total width and height */
+  padding: 1rem 2rem;
   border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
   cursor: pointer;
-  transition: border-color 0.25s;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  text-decoration: none;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  font-family: inherit; /* Use the same font as the <a> tag */
 }
+
+a.btn {
+  display: inline-block;
+  box-sizing: border-box; /* Ensure padding and border are included in the element’s total width and height */
+  padding: 1rem 2rem;
+  border: 1px solid transparent;
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  text-decoration: none;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  font-family: inherit; /* Use the same font as the <button> */
+}
+
 button:hover {
-  border-color: #646cff;
+  background-color: rgba(0, 0, 0, 0.7);
 }
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+
+.btn:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.game-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.game-container .left {
+  width: auto;
+  height: 14rem;
+  display: flex;
+  justify-content: center;
+}
+
+.game-container .right {
+  width: 50%;
+}
+
+.game-container .right ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.game-container .right ul li {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 5px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.game-container .right ul li:hover {
+  background-color: rgba(255, 255, 255, 0.3);
 }
 
 @media (prefers-color-scheme: light) {
@@ -92,5 +139,46 @@ button:focus-visible {
   }
   button {
     background-color: #f9f9f9;
+  }
+}
+
+@media (max-width: 768px) {
+  .card {
+    padding: 1rem;
+    max-width: 95%;
+  }
+
+  .card .content h1 {
+    font-size: 2rem;
+  }
+
+  .card .content p {
+    font-size: 1rem;
+  }
+
+  .btn {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+  }
+  
+}
+
+@media (max-width: 480px) {
+  .card {
+    padding: 0.5rem;
+    max-width: 100%;
+  }
+
+  .card .content h1 {
+    font-size: 1.5rem;
+  }
+
+  .card .content p {
+    font-size: 0.9rem;
+  }
+
+  .btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
   }
 }
