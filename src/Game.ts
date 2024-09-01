@@ -52,11 +52,14 @@ export default class Game {
    * @throws Error if the request to the API fails.
    */
   public async fetchTeamData(teamId: number | string): Promise<Team> {
-    const response = await fetch(`/api/v4/teams/${teamId.toString()}`, {
+    const apiUrl = import.meta.env.VITE_NODE_ENV === 'development'
+     ? `/api/v4/teams/${teamId.toString()}`
+     : `${import.meta.env.VITE_API_URL}/v4/teams/${teamId.toString()}`
+
+    const response = await fetch(apiUrl, {
       headers: {
         'X-Auth-Token': Game.apiKey,
       }
-      
     })
 
     if(!response.ok) 
