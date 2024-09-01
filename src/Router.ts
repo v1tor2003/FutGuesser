@@ -2,7 +2,9 @@
 export default class Router {
   
   private NOT_FOUND_URL: string = '/404' // URL to be used when a route is not found
-  private static FILE_PREFIX: string = '/pages' // Prefix to be added to file paths for routing
+  // Prefix to be added to file paths for routing
+  // /FutGuesser is added for GitHub Pages work properly, should make it dynamic
+  private static FILE_PREFIX: string = '/FutGuesser/pages' 
   private app: HTMLElement // Reference to the main application container in the DOM
   private homeUrl: string  // The URL for the home page (default is '/')
   // Set of routes available in the application
@@ -106,7 +108,7 @@ export default class Router {
    */
   public home(): Router {
     window.location.hash = ''
-    window.location.href = import.meta.env.VITE_DOMAIN || 'http://localhost:5173/' 
+    window.location.href = import.meta.env.VITE_DOMAIN
     return this
   }
 
