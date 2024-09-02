@@ -52,11 +52,8 @@ export default class Game {
    * @throws Error if the request to the API fails.
    */
   public async fetchTeamData(teamId: number | string): Promise<Team> {
-    const apiUrl = import.meta.env.VITE_NODE_ENV === 'development'
-     ? `/api/v4/teams/${teamId.toString()}`
-     : `${import.meta.env.VITE_API_URL}/v4/teams/${teamId.toString()}`
-
-    const response = await fetch(apiUrl, {
+    const apiUrl: string = import.meta.env.VITE_PROXY_API_URL
+    const response = await fetch(apiUrl+teamId.toString(), {
       headers: {
         'X-Auth-Token': Game.apiKey,
       }
