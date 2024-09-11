@@ -31,7 +31,9 @@ function initGlobalFunctions(): void {
 export async function startGame(): Promise<void> {
   router.redirect('/game.html')
   // Initialize the game with 3 team options
-  const game = new Game(3)
+  const MAX_API_VALID_ID = import.meta.env.VITE_API_MAX_TEAM_ID
+  const AWNSER_OPTIONS: number = 4
+  const game = new Game(AWNSER_OPTIONS, MAX_API_VALID_ID)
   // Setup the teams to be considered to display as the options as well as the team awnser
   await game.start()
   const randomTeam = game.getRandomTeam()

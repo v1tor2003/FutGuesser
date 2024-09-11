@@ -1,9 +1,6 @@
 export default class Game {
-  private static apiKey: string = import.meta.env.VITE_API_KEY // API key for accessing team data from the external API
   // Maximum possible ID for teams, used to generate random team IDs 
-  // Setting as 1000 there should be a lot more teams in the api
-  private static MAX_ID: number = 1000 
-  private teams: Team[] // Array to hold the team data fetched from the API
+  private teams: Team[] = []// Array to hold the team data fetched from the API
   
   /**
    * Constructor initializes the game with a specified number of options (teams).
@@ -12,10 +9,9 @@ export default class Game {
    * @param options - The number of teams to fetch and use in the game (default is 2).
    */
   constructor(
-    private options: number = 2
-  ){
-    this.teams = []
-  }
+    private options: number = 2,
+    private maxId: number
+  ){}
 
    /**
    * Starts the game by fetching data for multiple teams and setting them in the teams array.
@@ -51,16 +47,13 @@ export default class Game {
    * @returns A promise that resolves to a Team object with the fetched data.
    * @throws Error if the request to the API fails.
    */
-  public async fetchTeamData(teamId: number | string): Promise<Team> {
-    const apiUrl: string = import.meta.env.VITE_PROXY_API_URL
-    const response = await fetch(apiUrl+teamId.toString(), {
-      headers: {
-        'X-Auth-Token': Game.apiKey,
-      }
-    })
+  public async fetchTeamData(teamId: number): Promise<TeamShort> {
+    const apiUrl = import.meta.env.VITE_ENV === 'dev' ?
+                   import.meta.env.VITE_API_DEV_URL : import.meta.env.VITE_API_PROD_URL
+    const response = await fetch(`${apiUrl}/teams/${teamId}`)
 
     if(!response.ok) 
-      throw new Error(`Error fetching team dat: ${response.statusText}`)
+      throw new Error(`Error fetching team: ${response.statusText}`)
 
     const data: Team = await response.json()
 
@@ -95,12 +88,12 @@ export default class Game {
   }
 
    /**
-   * Generates a random team ID within the range of valid IDs (0 to MAX_ID).
+   * Generates a random team ID within the range of valid IDs (0 to maxId).
    * 
    * @returns A random team ID as a number.
    */
   private getRandomTeamId(): number {
-    return Math.floor(Math.random() * Game.MAX_ID)
+    return Math.floor(Math.random() * this.maxId)
   }
 
   /**
@@ -121,5 +114,4 @@ export default class Game {
   public toString(): string {
     return this.teams.toString()
   }
-
 }
